@@ -1,0 +1,41 @@
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { beforeEach, expect, it, vi } from 'vitest';
+import { ReviewPanel } from './ReviewPanel';
+import { createReview, getReviews } from './api';
+vi.mock('./api', () => ({createReview:vi.fn(), getReviews:vi.fn()}));
+beforeEach(()=>{vi.clearAllMocks();vi.mocked(getReviews).mockResolvedValue([]);vi.mocked(createReview).mockResolvedValue({id:1});});
+it('saves a zero correction and reloads persisted history without changing a prediction', async()=>{
+  const user=userEvent.setup();render(<ReviewPanel analysisId={42}/>);
+  await screen.findByText('Aún no hay revisiones registradas.');
+  await user.selectOptions(screen.getByLabelText('Decisión'),'corregido');
+  await user.type(screen.getByLabelText('Detalle de la corrección'),'Validación manual');
+  await user.type(screen.getByLabelText(/Disponibilidad corregida/),'0');
+  vi.mocked(getReviews).mockResolvedValue([{id:1,decision:'corregido',correccion:{descripcion:'Validación manual',availability_pct:0},comentario:null,creado_en:'2026-11-19T12:00:00Z',revisor_codigo:'SUP-001',revisor_nombre:'Supervisor QA'}]);
+  await user.click(screen.getByRole('button',{name:'Guardar revisión'}));
+  await screen.findByText(/Revisión guardada/);
+  expect(createReview).toHaveBeenCalledExactlyOnceWith(42,{decision:'corregido',correccion:{descripcion:'Validación manual',availability_pct:0},comentario:null});
+  await screen.findByText(/Supervisor QA/);
+});
+it('keeps input after a failed save and permits retry',async()=>{
+  vi.mocked(createReview).mockRejectedValueOnce(new Error('Sin conexión'));
+  const user=userEvent.setup();render(<ReviewPanel analysisId={7}/>);
+  await user.type(screen.getByLabelText('Comentario (opcional)'),'Conservar este comentario');
+  await user.click(screen.getByRole('button',{name:'Guardar revisión'}));
+  await screen.findByRole('alert');
+  expect(screen.getByLabelText('Comentario (opcional)')).toHaveValue('Conservar este comentario');
+  await user.click(screen.getByRole('button',{name:'Guardar revisión'}));
+  await screen.findByText(/Revisión guardada/);
+  expect(createReview).toHaveBeenCalledTimes(2);
+});
+it('reports a history failure separately from a successful save',async()=>{
+  const user=userEvent.setup();render(<ReviewPanel analysisId={7}/>);
+  await screen.findByText('Aún no hay revisiones registradas.');
+  vi.mocked(getReviews).mockRejectedValueOnce(new Error('Consulta falló'));
+  await user.click(screen.getByRole('button',{name:'Guardar revisión'}));
+  await screen.findByText(/Revisión guardada/);
+  await screen.findByText('Consulta falló');
+  await user.click(screen.getByRole('button',{name:'Reintentar consulta'}));
+  await waitFor(()=>expect(screen.queryByText('Consulta falló')).not.toBeInTheDocument());
+  expect(createReview).toHaveBeenCalledTimes(1);
+});

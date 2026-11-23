@@ -1,0 +1,102 @@
+
+/* ========================================
+   REGOVA - Estilos globales
+   ======================================== */
+
+:root {
+  /* Identidad visual */
+  --color-primary: #0754c7;
+  --color-primary-hover: #0864e5;
+  --color-secondary: #07172f;
+  --color-cyan: #42cfff;
+
+  /* Superficies */
+  --color-background: #f8fbff;
+  --color-surface: #ffffff;
+
+  /* Textos */
+  --color-text: #0b1940;
+  --color-text-muted: #587096;
+
+  /* Estados */
+  --color-success: #00a65a;
+  --color-warning: #f5a900;
+  --color-danger: #ed2939;
+
+  /* Tipografía */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: var(--color-text);
+}
+
+/* ========================================
+   Reset global
+   ======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ========================================
+   Contenedor principal
+   ======================================== */
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ========================================
+   Fondo de la portada
+   ======================================== */
+
+body {
+  background-color: #07172f;
+  background-image:
+    url('./assets/illustrations/regova-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* ========================================
+   Accesibilidad
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

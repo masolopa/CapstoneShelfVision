@@ -1,0 +1,35 @@
+# Configuración local
+.env
+.env.*
+!.env.example
+!.env.docker.example
+*.local
+
+# Dependencias y artefactos generados
+node_modules/
+dist/
+coverage/
+.vitest/
+*.tsbuildinfo
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv*/
+backend/backups/
+backend/storage/
+*.pt
+*.onnx
+
+/backend/data/*
+!/backend/data/training/
+/backend/data/training/*
+!/backend/data/training/status.json
+!/backend/data/training/yolo_runs/
+/backend/data/training/yolo_runs/*
+!/backend/data/training/yolo_runs/segundo_60_extra10_20261112/
+/backend/data/training/yolo_runs/segundo_60_extra10_20261112/*
+!/backend/data/training/yolo_runs/segundo_60_extra10_20261112/weights/
+/backend/data/training/yolo_runs/segundo_60_extra10_20261112/weights/*
+!/backend/data/training/yolo_runs/segundo_60_extra10_20261112/weights/best.pt
+/reports/
+/work/

@@ -1,0 +1,25 @@
+
+.regova-logo {
+  display: block;
+  flex-shrink: 0;
+  max-width: 100%;
+  height: auto;
+  color: #087bff;
+
+  transition:
+    color 200ms ease,
+    filter 200ms ease;
+}
+
+@media (hover: hover) {
+  .regova-logo:hover {
+    color: #42cfff;
+    filter: drop-shadow(0 0 6px rgba(66, 207, 255, 0.35));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .regova-logo {
+    transition: none;
+  }
+}

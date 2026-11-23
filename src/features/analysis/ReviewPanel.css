@@ -1,0 +1,6 @@
+.review-panel fieldset { border:0; padding:0; margin:0; display:grid; gap:16px; }
+.review-panel form { max-width:760px; margin:20px 0; }
+.review-panel select,.review-panel textarea,.review-panel input { width:100%; box-sizing:border-box; font:inherit; }
+.review-list { padding-left:24px; }
+.review-list li { padding:12px 0; border-bottom:1px solid var(--border,#d6dce5); overflow-wrap:anywhere; }
+.review-list p { white-space:pre-wrap; }

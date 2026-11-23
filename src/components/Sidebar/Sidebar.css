@@ -1,0 +1,194 @@
+
+/* ========================================
+   REGOVA - SIDEBAR ESCRITORIO
+======================================== */
+
+.sidebar {
+  width: 270px;
+  height: 100vh;
+  height: 100dvh;
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+  padding: 26px 14px;
+
+  background: linear-gradient(
+    160deg,
+    #132b44 0%,
+    #193852 55%,
+    #10273f 100%
+  );
+
+  border-right: 1px solid rgba(90, 170, 255, 0.22);
+  color: #f5f9ff;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+/* LOGOTIPO */
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 10px 36px;
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.sidebar-brand-text strong {
+  font-size: 26px;
+  letter-spacing: -0.7px;
+}
+
+.sidebar-brand-text span {
+  font-size: 12px;
+  color: #b8cde5;
+}
+
+/* NAVEGACIÓN */
+
+.sidebar-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 14px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  background: transparent;
+  color: #e4edf8;
+
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.sidebar-link-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+
+  font-size: 24px;
+  line-height: 1;
+}
+
+.sidebar-link-label {
+  line-height: 1.4;
+}
+
+/* HOVER */
+
+@media (hover: hover) {
+  .sidebar-link:hover {
+    background: rgba(36, 128, 229, 0.18);
+    border-color: rgba(89, 183, 255, 0.35);
+    transform: translateX(3px);
+  }
+}
+
+/* SECCIÓN ACTIVA */
+
+.sidebar-link.active {
+  background: linear-gradient(
+    110deg,
+    #1264b7,
+    #164a83
+  );
+
+  border-color: rgba(83, 179, 255, 0.48);
+
+  box-shadow:
+    inset 3px 0 0 #4ac7ff,
+    0 4px 16px rgba(0, 75, 170, 0.2);
+
+  color: #ffffff;
+}
+
+.sidebar-link.active::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 3px;
+  height: 18px;
+
+  border-radius: 4px;
+  background: #70d9ff;
+  box-shadow: 0 0 9px rgba(79, 205, 255, 0.5);
+}
+
+/* ACCESIBILIDAD */
+
+.sidebar-link:focus-visible {
+  outline: 2px solid #7ad9ff;
+  outline-offset: 2px;
+}
+
+/* PIE DEL SIDEBAR */
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 30px 14px 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  color: #b8cde5;
+  font-size: 12px;
+}
+
+.sidebar-footer-line {
+  height: 1px;
+  margin-bottom: 16px;
+  background: rgba(179, 210, 245, 0.24);
+}
+
+.sidebar-footer p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* MOVIMIENTO REDUCIDO */
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-link {
+    transition: none;
+  }
+
+  .sidebar-link:hover {
+    transform: none;
+  }
+}

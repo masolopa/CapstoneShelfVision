@@ -1,0 +1,216 @@
+
+/* ========================================
+   REGOVA - TABLA DE GÓNDOLAS
+======================================== */
+
+.gondola-table-section {
+  margin-top: 24px;
+  overflow: hidden;
+
+  background: #ffffff;
+  border: 1px solid #dfe8f3;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 18px rgba(18, 54, 95, 0.035);
+}
+
+.gondola-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 22px 24px;
+}
+
+.gondola-table-header h3 {
+  margin: 0 0 5px;
+  color: #102d50;
+  font-size: 18px;
+}
+
+.gondola-table-header p {
+  margin: 0;
+  color: #7187a0;
+  font-size: 12px;
+}
+
+.gondola-table-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.gondola-table-controls input,
+.gondola-table-controls select {
+  min-height: 38px;
+  padding: 8px 12px;
+
+  background: #f8fbff;
+  border: 1px solid #d7e5f3;
+  border-radius: 8px;
+
+  color: #16385c;
+  font: inherit;
+  font-size: 12px;
+}
+
+.gondola-table-controls input {
+  width: 190px;
+}
+
+.gondola-table-controls select {
+  cursor: pointer;
+}
+
+.gondola-table-controls input:focus-visible,
+.gondola-table-controls select:focus-visible,
+.gondola-detail-button:focus-visible {
+  outline: 2px solid #087bff;
+  outline-offset: 2px;
+}
+
+/* TABLA */
+
+.gondola-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.gondola-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.gondola-table thead {
+  background: #edf4fc;
+}
+
+.gondola-table th {
+  padding: 14px 16px;
+  text-align: left;
+
+  color: #24486e;
+  font-weight: 700;
+  border-bottom: 1px solid #dce7f3;
+}
+
+.gondola-table td {
+  padding: 12px 16px;
+
+  color: #344f6c;
+  border-bottom: 1px solid #edf1f6;
+}
+
+.gondola-table tbody tr:hover {
+  background: #f7fbff;
+}
+
+.gondola-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.gondola-table-code {
+  font-weight: 700;
+  color: #102d50 !important;
+}
+
+/* ESTADOS */
+
+.gondola-state {
+  display: inline-block;
+  min-width: 95px;
+  padding: 7px 12px;
+
+  border-radius: 7px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.gondola-state--normal {
+  color: #176a42;
+  background: #dcf5e5;
+}
+
+.gondola-state--warning {
+  color: #94610b;
+  background: #fff0c8;
+}
+
+.gondola-state--critical {
+  color: #ae2831;
+  background: #ffe0e2;
+}
+
+/* ALERTAS */
+
+.gondola-alert-count {
+  font-weight: 700;
+  color: #159568;
+}
+
+.gondola-alert-count.has-alerts {
+  color: #d88718;
+}
+
+/* ACCIONES */
+
+.gondola-detail-button {
+  padding: 8px 14px;
+
+  border: 1px solid #d2e6ff;
+  border-radius: 7px;
+
+  background: #eaf3ff;
+  color: #087bff;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.gondola-detail-button:hover:not(:disabled) {
+  background: #d9eaff;
+  border-color: #9acaff;
+}
+
+.gondola-detail-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.gondola-table-empty {
+  padding: 32px !important;
+  text-align: center;
+  color: #7187a0 !important;
+}
+
+.gondola-table-footer {
+  padding: 13px 24px;
+  background: #fbfdff;
+  border-top: 1px solid #edf1f6;
+
+  color: #7187a0;
+  font-size: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gondola-detail-button {
+    transition: none;
+  }
+}
+
+.gondola-state--unassessed { color: #64748b; background: #eef2f7; }
+.gondola-state--review { color: #385b8b; background: #e6efff; }
+
+/* Revisión y consistencia se muestran independientemente de las alertas */
+.gondola-review-count { display: block; margin-top: 5px; color: #7187a0; font-size: 11px; }
+.gondola-consistency-warning { display: inline-block; color: #94610b; background: #fff0c8; border-radius: 7px; padding: 7px 10px; font-weight: 700; font-size: 12px; }
+.gondola-consistency-ok { color: #176a42; font-size: 12px; }

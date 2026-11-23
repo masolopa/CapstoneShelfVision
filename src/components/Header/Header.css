@@ -1,0 +1,146 @@
+
+/* ========================================
+   REGOVA - HEADER ESCRITORIO
+======================================== */
+
+.regova-header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+
+  width: 100%;
+  min-height: 110px;
+  padding: 22px 32px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+  border-bottom: 1px solid #dde7f2;
+}
+
+/* LÍNEA DECORATIVA SUPERIOR */
+
+.regova-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 180px;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    #087bff,
+    #54c8ff,
+    transparent
+  );
+}
+
+/* INFORMACIÓN DE LA SECCIÓN */
+
+.regova-header-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.regova-header-eyebrow {
+  color: #4c83ba;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.regova-header-title {
+  margin: 0;
+
+  color: #102d50;
+  font-size: clamp(22px, 2vw, 29px);
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.regova-header-subtitle {
+  margin: 0;
+
+  color: #7187a0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* INFORMACIÓN DEL USUARIO */
+
+.regova-header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  flex-shrink: 0;
+
+  padding: 9px 13px;
+  border: 1px solid #e1ebf5;
+  border-radius: 12px;
+
+  background: #f8fbff;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+@media (hover: hover) {
+  .regova-header-user:hover {
+    border-color: #a8d4ff;
+    box-shadow: 0 4px 16px rgba(8, 123, 255, 0.08);
+  }
+}
+
+.regova-header-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #e6f3ff,
+    #d7ebff
+  );
+
+  color: #087bff;
+  border: 1px solid #c6e2ff;
+}
+
+.regova-header-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.regova-header-user-info strong {
+  color: #16385c;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.regova-header-user-info span {
+  color: #7187a0;
+  font-size: 12px;
+}
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+  .regova-header-user {
+    transition: none;
+  }
+}

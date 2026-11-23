@@ -1,0 +1,70 @@
+x-regova-db: &regova-db
+  REGOVA_DB_HOST: db
+  REGOVA_DB_NAME: regova
+  REGOVA_DB_USER: regova_app
+  REGOVA_DB_PASSWORD: ${REGOVA_DB_PASSWORD:?Define REGOVA_DB_PASSWORD en .env.docker}
+
+services:
+  db:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: regova
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en .env.docker}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "postgres", "-d", "regova"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  setup:
+    image: regova-app:local
+    pull_policy: never
+    command: ["python", "bootstrap_docker.py"]
+    environment:
+      <<: *regova-db
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en .env.docker}
+      REGOVA_ADMIN_PASSWORD: ${REGOVA_ADMIN_PASSWORD:?Define REGOVA_ADMIN_PASSWORD en .env.docker}
+    volumes:
+      - storage:/var/lib/regova/storage
+      - type: bind
+        source: ${REGOVA_CHECKPOINT:?Define REGOVA_CHECKPOINT en .env.docker}
+        target: /checkpoint/pesos.pt
+        read_only: true
+        bind:
+          create_host_path: false
+    depends_on:
+      db:
+        condition: service_healthy
+
+  app:
+    image: regova-app:local
+    build: .
+    environment:
+      <<: *regova-db
+      REGOVA_SMTP_HOST: ${REGOVA_SMTP_HOST:-}
+      REGOVA_SMTP_PORT: ${REGOVA_SMTP_PORT:-587}
+      REGOVA_SMTP_SECURITY: ${REGOVA_SMTP_SECURITY:-starttls}
+      REGOVA_SMTP_USER: ${REGOVA_SMTP_USER:-}
+      REGOVA_SMTP_PASSWORD: ${REGOVA_SMTP_PASSWORD:-}
+      REGOVA_SMTP_FROM: ${REGOVA_SMTP_FROM:-}
+      REGOVA_PUBLIC_URL: ${REGOVA_PUBLIC_URL:-http://localhost:8011}
+    ports:
+      - "127.0.0.1:8011:8011"
+    volumes:
+      - storage:/var/lib/regova/storage
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8011/api/ready', timeout=3).close()"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres:
+  storage:

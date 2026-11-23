@@ -1,0 +1,18 @@
+{
+  "checkpoint": "data/training/yolo_runs/segundo_60_extra10_20261112/weights/best.pt",
+  "run": "segundo_60_extra10_20261112",
+  "detector": "YOLOv8n, 60 imágenes corregidas, ajuste adicional de 10 épocas",
+  "fuentes": [
+    "RSD",
+    "RSOD"
+  ],
+  "metrics": {
+    "test_map50": 0.7203536476832852,
+    "test_map50_95": 0.387934616573753,
+    "test_precision": 0.8105680796159886,
+    "test_recall": 0.6255394272916589,
+    "test_map50_producto": 0.8992317449123549,
+    "test_map50_vacio": 0.5414755504542157
+  },
+  "nota": "Test125; precision/recall macro a confianza0.25 e IoU0.50; fuentes históricas del checkpoint conservadas. Activado para pruebas manuales del usuario."
+}

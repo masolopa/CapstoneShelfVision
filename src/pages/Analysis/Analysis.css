@@ -1,0 +1,490 @@
+
+/* ========================================
+   REGOVA - ANÁLISIS DE GÓNDOLA
+======================================== */
+
+.analysis-page {
+  width: 100%;
+  min-width: 0;
+  color: #10264a;
+}
+
+/* ENCABEZADO */
+
+.analysis-intro {
+  margin-bottom: 24px;
+}
+
+.analysis-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 16px;
+
+  color: #4779bd;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.analysis-breadcrumb span:last-child {
+  color: #193657;
+}
+
+.analysis-intro h2 {
+  margin: 0 0 7px;
+
+  color: #102d50;
+  font-size: clamp(24px, 2vw, 30px);
+  letter-spacing: -0.6px;
+}
+
+.analysis-intro > p {
+  margin: 0;
+  color: #58769b;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* TRES COLUMNAS PRINCIPALES */
+
+.analysis-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.3fr)
+    minmax(0, 0.95fr);
+
+  gap: 16px;
+  align-items: stretch;
+}
+
+.analysis-card {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  padding: 20px;
+
+  background: #ffffff;
+  border: 1px solid #dfe8f3;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 18px rgba(18, 54, 95, 0.035);
+}
+
+.analysis-card h3 {
+  margin: 0 0 16px;
+
+  color: #102d50;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* SELECCIÓN DE IMAGEN */
+
+.analysis-upload-zone {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  min-height: 280px;
+  padding: 24px 12px;
+
+  border: 1px dashed #91b9eb;
+  border-radius: 8px;
+
+  background: linear-gradient(
+    180deg,
+    #fbfdff,
+    #f4f9ff
+  );
+
+  text-align: center;
+}
+
+.analysis-upload-icon {
+  color: #153d70;
+  font-size: 56px;
+  line-height: 1;
+}
+
+.analysis-upload-zone p {
+  margin: 0;
+
+  color: #5375a0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.analysis-select-button {
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #e0edff;
+  color: #087bff;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.analysis-select-button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.analysis-file-hint {
+  margin: 14px 0 0;
+
+  color: #7187a0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* VISTA PREVIA */
+
+.analysis-preview {
+  display: grid;
+  place-items: center;
+
+  flex: 1;
+  min-height: 280px;
+  overflow: hidden;
+
+  border: 1px solid #dce7f3;
+  border-radius: 7px;
+
+  background: #edf3fa;
+}
+
+.analysis-preview-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  padding: 20px;
+  text-align: center;
+}
+
+.analysis-preview-empty span {
+  color: #88a7cb;
+  font-size: 48px;
+}
+
+.analysis-preview-empty p {
+  margin: 0;
+  color: #7187a0;
+  font-size: 13px;
+}
+
+.analysis-preview-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  margin-top: 12px;
+  padding: 12px;
+
+  background: #edf6ff;
+  border-radius: 7px;
+}
+
+.analysis-preview-notice > span {
+  color: #087bff;
+  font-size: 20px;
+}
+
+.analysis-preview-notice p {
+  margin: 0;
+
+  color: #58769b;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* FORMULARIO */
+
+.analysis-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  margin-bottom: 18px;
+}
+
+.analysis-field label {
+  color: #18385d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.analysis-field input,
+.analysis-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  box-sizing: border-box;
+
+  padding: 10px 12px;
+
+  background: #ffffff;
+  border: 1px solid #ccdbeb;
+  border-radius: 7px;
+
+  color: #24486e;
+  font: inherit;
+  font-size: 13px;
+}
+
+.analysis-field input:focus-visible,
+.analysis-field select:focus-visible {
+  outline: 2px solid #087bff;
+  outline-offset: 2px;
+}
+
+.analysis-start-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  width: 100%;
+  min-height: 48px;
+  margin-top: auto;
+
+  border: none;
+  border-radius: 7px;
+
+  background: linear-gradient(
+    110deg,
+    #153e73,
+    #0b3263
+  );
+
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.analysis-start-button:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+/* CONSIDERACIONES */
+
+.analysis-considerations {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  margin-top: 16px;
+  padding: 20px;
+
+  background: linear-gradient(
+    110deg,
+    #eaf4ff,
+    #f1f8ff
+  );
+
+  border: 1px solid #deecfc;
+  border-radius: 9px;
+}
+
+.analysis-considerations-icon {
+  color: #087bff;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.analysis-considerations h3 {
+  margin: 0 0 7px;
+
+  color: #087bff;
+  font-size: 14px;
+}
+
+.analysis-considerations ul {
+  margin: 0;
+  padding-left: 18px;
+
+  color: #58769b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* AJUSTE FLEXIBLE PARA ESCRITORIOS ESTRECHOS */
+
+@media (max-width: 1200px) {
+  .analysis-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .analysis-info-card {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .analysis-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .analysis-info-card {
+    grid-column: auto;
+  }
+
+  .analysis-upload-zone,
+  .analysis-preview {
+    min-height: 240px;
+  }
+}
+
+
+/* ========================================
+   INTERACCIONES DE CARGA DE IMÁGENES
+======================================== */
+
+/* Input accesible, oculto visualmente */
+.analysis-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Zona activa durante el arrastre */
+.analysis-upload-zone--dragging {
+  border-color: #087bff;
+  background: #e7f3ff;
+  box-shadow: inset 0 0 0 2px rgba(8, 123, 255, 0.12);
+}
+
+/* Botón para seleccionar archivos */
+.analysis-select-button:not(:disabled) {
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.analysis-select-button:hover:not(:disabled) {
+  background: #cfe4ff;
+  transform: translateY(-1px);
+}
+
+.analysis-select-button:focus-visible,
+.analysis-remove-button:focus-visible {
+  outline: 2px solid #087bff;
+  outline-offset: 3px;
+}
+
+/* Archivo seleccionado */
+.analysis-selected-file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.analysis-selected-file > span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #24486e;
+  font-size: 12px;
+}
+
+.analysis-remove-button {
+  padding: 5px 10px;
+
+  border: none;
+  border-radius: 5px;
+
+  background: #fff0f1;
+  color: #b93243;
+
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.analysis-remove-button:hover {
+  background: #ffe0e3;
+}
+
+/* Mensajes de validación */
+.analysis-file-error {
+  margin: 10px 0 0;
+
+  color: #bd3041;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Imagen real en la vista previa */
+.analysis-preview-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .analysis-select-button {
+    transition: none;
+  }
+
+  .analysis-select-button:hover {
+    transform: none;
+  }
+}
+
+
+.analysis-integration-result {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid #b8dbca;
+  background: #f0faf4;
+  border-radius: 8px;
+  color: #145238;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.analysis-integration-result p { margin: 8px 0 0; line-height: 1.5; }
+
+/* Información contextual de la góndola seleccionada */
+.analysis-gondola-detail {
+  margin: -7px 0 16px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #58769b;
+}
+.analysis-level-warning {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  background: #fff6e7;
+  color: #81531c;
+  line-height: 1.5;
+}
